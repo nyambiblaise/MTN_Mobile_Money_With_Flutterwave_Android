@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.flutterwave'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 30
+        versionCode 1
+        versionName "2.1.36"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    useLibrary 'android.test.mock'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation "androidx.appcompat:appcompat:$v_appcompat"
+    implementation "com.google.android.material:material:$v_material"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "com.squareup.retrofit2:retrofit:$v_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$v_retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$v_logging_interceptor"
+    implementation "org.parceler:parceler-api:$v_parceler"
+    annotationProcessor "org.parceler:parceler:$v_parceler"
+    implementation "com.squareup.retrofit2:converter-scalars:$v_retrofit"
+    implementation "com.scottyab:aescrypt:$v_aescrypt"
+    testImplementation 'junit:junit:4.12'
+
+    // dagger 2
+    implementation "com.google.dagger:dagger:$v_dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$v_dagger"
+    implementation "androidx.constraintlayout:constraintlayout:$v_constraintlayout"
+
+    testImplementation "com.google.dagger:dagger:$v_dagger"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$v_dagger"
+    testImplementation "org.mockito:mockito-core:$v_mockito_core"
+    testImplementation "org.mockito:mockito-inline:$v_mockito_inline"
+
+    implementation 'androidx.cardview:cardview:1.0.0'
+    api project(':rave_remote')
+    api project(path: ':rave_core')
+    api project(path: ':rave_cache')
+    implementation project(':rave_logger')
+    implementation project(':rave_utils')
+    compile project(path: ':rave_presentation')
+
+
+}

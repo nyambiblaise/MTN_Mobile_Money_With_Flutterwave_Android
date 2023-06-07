@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.flutterwave'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.squareup.retrofit2:converter-gson:$v_retrofit"
+
+    //dagger
+    implementation "com.google.dagger:dagger:$v_dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$v_dagger"
+    api project(':rave_core')
+
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

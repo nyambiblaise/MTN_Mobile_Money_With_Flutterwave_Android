@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.flutterwave'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(':rave_remote')
+    implementation project(':rave_logger')
+    implementation project(':rave_cache')
+    implementation project(path: ':rave_core')
+
+    //dagger
+    implementation "com.google.dagger:dagger:$v_dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$v_dagger"
+
+    //Parcelizing
+    implementation "org.parceler:parceler-api:$v_parceler"
+    annotationProcessor "org.parceler:parceler:$v_parceler"
+
+    implementation "com.scottyab:aescrypt:$v_aescrypt"
+
+    //network
+    implementation "com.squareup.retrofit2:retrofit:$v_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$v_retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$v_logging_interceptor"
+    implementation "com.squareup.retrofit2:converter-scalars:$v_retrofit"
+
+    implementation "androidx.appcompat:appcompat:$v_appcompat"
+    implementation "androidx.legacy:legacy-support-v4:$v_legacy"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test.ext:junit:$v_junit_test"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$v_espresso_core"
+    testImplementation "com.google.dagger:dagger:$v_dagger"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$v_dagger"
+    testImplementation "org.mockito:mockito-core:$v_mockito_core"
+    testImplementation "org.mockito:mockito-inline:$v_mockito_inline"
+}
