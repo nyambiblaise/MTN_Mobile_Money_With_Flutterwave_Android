@@ -1,5 +1,5 @@
 # Charge Verification Utils
-This module helps you handle charge verification when not using the default drop-in UI provided by Flutterwave's android SDK.
+This module helps you handle charge verification when not using the default drop-in UI provided by Flutterwave's android SDK..
 
 **Step 1.** Add this in your root build.gradle at the end of repositories:
 
